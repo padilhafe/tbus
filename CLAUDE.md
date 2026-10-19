@@ -37,9 +37,15 @@ dependências em `docs/blocos.md`.
 
 1. **Antes de começar:** ler todas as issues do bloco + as dependências listadas. Se uma dependência
    não estiver `Feito`, **não comece**: comente na issue e pare.
-2. **Branch:** `bloco/Bxx-<slug>` (ex.: `bloco/B03-persistencia`). Commits: `BUS-<n>: <resumo>`.
-3. **Plane:** mover as issues do bloco para `Em andamento` ao começar e `Em review` ao terminar,
-   comentando o resumo do que foi feito e como testar.
+2. **Repo:** `github.com/padilhafe/tbus` (**público**: nada de dado de cliente, IP interno ou
+   segredo). Partir sempre da `main` atualizada (`git pull`).
+   **Branch:** `bloco/Bxx-<slug>` (ex.: `bloco/B03-persistencia`). Commits: `BUS-<n>: <resumo>`.
+   **Agentes em paralelo** usam `git worktree` (um diretório por bloco), nunca a mesma pasta.
+3. **Entrega = 1 PR por bloco** para `main` (`gh pr create`), título `Bxx: <nome do bloco>`, corpo
+   com issues cobertas, critérios de aceite marcados e como testar. **Agente nunca faz merge**:
+   quem aprova e mergeia é o Felipe (mesmo princípio do produto: agente propõe, humano aprova).
+   **Plane:** mover as issues do bloco para `Em andamento` ao começar e `Em review` ao abrir o PR,
+   comentando o link do PR. O Felipe move para `Feito` após o merge.
 4. **Contratos são fixos.** Schema, rotas, nomes de módulo, códigos de erro e variáveis de ambiente
    definidos em spec de outro bloco **não podem ser alterados**. Se precisar mudar, pare e comente
    na issue explicando o porquê. Nunca "conserte" o contrato por conta própria.

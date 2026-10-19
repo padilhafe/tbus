@@ -1,6 +1,6 @@
 # Mapa de blocos
 
-Cada bloco = um agente, uma branch `bloco/Bxx-<slug>`, uma entrega. Issues no Plane (projeto `BUS`)
+Cada bloco = um agente, uma branch `bloco/Bxx-<slug>`, um PR para `main` (merge só pelo Felipe). Issues no Plane (projeto `BUS`)
 carregam a label do bloco. "Depende de" = blocos que precisam estar `Feito` antes de começar.
 
 | Bloco | Nome | Issues | Depende de | Spec |
