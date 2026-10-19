@@ -1,0 +1,20 @@
+# Postgres de desenvolvimento. Use via `make dev-db` (projeto compose fixo `teambus`).
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: teambus
+      POSTGRES_PASSWORD: teambus
+      POSTGRES_DB: teambus
+    ports:
+      - "127.0.0.1:55432:5432"
+    volumes:
+      - teambus_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U teambus -d teambus"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  teambus_pgdata:
