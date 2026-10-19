@@ -40,7 +40,11 @@ dependências em `docs/blocos.md`.
 2. **Repo:** `github.com/padilhafe/tbus` (**público**: nada de dado de cliente, IP interno ou
    segredo). Partir sempre da `main` atualizada (`git pull`).
    **Branch:** `bloco/Bxx-<slug>` (ex.: `bloco/B03-persistencia`). Commits: `BUS-<n>: <resumo>`.
-   **Agentes em paralelo** usam `git worktree` (um diretório por bloco), nunca a mesma pasta.
+   **Agentes em paralelo** usam `git worktree` (um diretório por bloco), nunca a mesma pasta:
+   `git worktree add ~/worktrees/tbus/Bxx -b bloco/Bxx-<slug> origin/main` (fora do Proton Drive,
+   para `.venv`/`node_modules` não sincronizarem). Agente só trabalha no próprio worktree e nunca
+   faz `checkout` de outra branch. Este checkout (`~/trabalho/team-bus`) fica sempre na `main`.
+   Após o merge: `git worktree remove ~/worktrees/tbus/Bxx`.
 3. **Entrega = 1 PR por bloco** para `main` (`gh pr create`), título `Bxx: <nome do bloco>`, corpo
    com issues cobertas, critérios de aceite marcados e como testar. **Agente nunca faz merge**:
    quem aprova e mergeia é o Felipe (mesmo princípio do produto: agente propõe, humano aprova).
