@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "plane": {
+      "type": "stdio",
+      "command": "bash",
+      "args": [
+        "-lc",
+        "source \"$HOME/.zshrc_exports/team-bus.env\" && exec uvx plane-mcp-server stdio"
+      ],
+      "env": {
+        "PLANE_WORKSPACE_SLUG": "bus",
+        "PLANE_BASE_URL": "http://127.0.0.1:8090"
+      }
+    }
+  }
+}

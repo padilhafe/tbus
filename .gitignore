@@ -1,0 +1,22 @@
+# Plane local (contém segredos e é só ferramenta de gestão)
+dev/plane/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+dist/
+build/
+
+# Ambiente / segredos
+.env
+.env.*
+!.env.example
+
+# SO / editores
+.DS_Store
+.idea/
+.vscode/
