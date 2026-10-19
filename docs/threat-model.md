@@ -13,7 +13,7 @@ Regras de autoridade em [authority.md](authority.md); formato das mensagens em
 | T3 | Segredos publicados no canal | Filtro de segredos na entrada | BUS-19 |
 | T4 | Agente rebelde/descontrolado | Kill switch; políticas de aprovação; rate limit (pendência futura) | BUS-34, BUS-32 |
 | T5 | Canal usado como C2 ou rota de exfiltração | Só texto limitado (16 KB), sem anexos, sem execução, sem requisição de saída; auditoria | BUS-15 |
-| T6 | Roubo de token de sessão | Hash no banco, expiração ≤ 24h, revogação | BUS-16, BUS-34 |
+| T6 | Roubo de token de sessão | Hash no banco, expiração curta (default 12h, teto `TEAMBUS_SESSION_MAX_HOURS` = 24h), revogação | BUS-16, BUS-34 |
 | T7 | Adulteração de histórico | Audit log append-only | BUS-15 |
 | T8 | Impersonação de humano por agente | Aprovação exige token de humano | BUS-30 |
 
@@ -55,7 +55,7 @@ Regras de autoridade em [authority.md](authority.md); formato das mensagens em
 - **Exemplo:** agente publica centenas de `status` por minuto, ou tenta fazer deploy sem
   aprovação.
 - **Mitigação:** kill switch: humano pausa, retoma ou revoga qualquer sessão, com efeito na chamada
-  seguinte (BUS-34). Políticas de aprovação por projeto, com ações obrigatórias que não podem ser
+  seguinte; a revogação também libera as reservas da sessão (BUS-34). Políticas de aprovação por projeto, com ações obrigatórias que não podem ser
   liberadas (BUS-32). **Rate limit: pendência futura** (não implementado na v1).
 - **Issues:** BUS-34, BUS-32.
 
@@ -76,7 +76,7 @@ Regras de autoridade em [authority.md](authority.md); formato das mensagens em
   terceiro.
 - **Exemplo:** token aparece num log de CI e alguém o usa para postar no tópico em nome do agente.
 - **Mitigação:** tokens guardados só como hash no banco; token em claro aparece uma única vez, na
-  criação; expiração ≤ 24h; revogação imediata pelo dono ou admin (BUS-16, BUS-34).
+  criação; expiração curta (default 12h, teto `TEAMBUS_SESSION_MAX_HOURS` = 24h); revogação imediata pelo dono ou admin (BUS-16, BUS-34).
 - **Issues:** BUS-16, BUS-34.
 
 ## T7. Adulteração de histórico
